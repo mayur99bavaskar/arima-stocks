@@ -36,6 +36,7 @@ def pick_d(series: pd.Series, max_d: int = 2) -> int:
 
 
 def fit_best_arima(series: pd.Series, max_p: int = 3, max_q: int = 3):
+    series = pd.Series(series.to_numpy(dtype=float))
     d = pick_d(series)
     best_aic, best_fit, best_order = float("inf"), None, None
     for p, q in itertools.product(range(max_p + 1), range(max_q + 1)):
